@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="main">
+
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/general.css" type="text/css" />
+</head>
+
+<body ng-app="main">
+    <div class="navbar navbar-default navbar-static-top" ng-controller="NavigationController as navigationCtrl">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">The Forum</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" ng-click="navigationCtrl.logout()">Logout</a>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="container" id="mainDiv">
+
+        <form name="loginForm" ng-submit="loginForm.$valid && loginCtrl.login()" ng-controller="LoginController as loginCtrl" method="post" novalidate>
+            {{loginForm.$valid}}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model="loginCtrl.current.name" type="name" class="form-control" id="name" placeholder="Jade" required>
+                <!--</div>-->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="loginCtrl.current.password" type="password" class="form-control" id="password" placeholder="*******" required>
+                </div>
+                <div class="form-group">
+                    <label for="room">Room</label>
+                    <input ng-model="loginCtrl.current.room" type="text" class="form-control" id="room" placeholder="Room" required>
+                </div>
+                <div class="form-group">
+                    <label for="key">Key</label>
+                    <input ng-model="loginCtrl.current.key" type="password" class="form-control" id="key" placeholder="*******" required>
+                </div>
+                <input type="hidden" name="action" ng-value="loginCtrl.current.action" />
+                <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        </div>
+
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+
+</html>
