@@ -7,20 +7,12 @@
     $registered = array();
     // $cee = new Person('cee', 'ceepas', '1', '');
     if($params['key'] === 'key321'){
-        session_start();
-        $_SESSION['name'] = $params['name'];
-        $_SESSION['room'] = $params['room'];
-        include('chat.php');
-        
-        
-        echo "<code><pre>DEBUGGING PURPOSES: ";
-        foreach ($_SESSION as $key => $value) {
-            echo "$key: $value<br>";
-        }
-        echo "</pre ></code>";
+        //include('chat.php');
+        echo json_encode(array("status" => 1));
     } else{
-        echo 'invalid page should be here';
+        echo json_encode(array("status" => 0));
     }
+    // echo json_encode(array("status" => "0"));
     // foreach($params as $key => $value) {
     //   echo "$key: $value, ";
     // }

@@ -15,7 +15,7 @@
             <div>Olu</div>
             <div>Ada</div>
         </div>
-        <div class="col-md-8 col-md-offset-1  -lg" ng-controller="chatCtrl">
+        <div class="col-md-8 col-md-offset-1  -lg">
             <div class="row " style="border: 0px">
                 <textarea rows="10" class="form-control" editable="false"></textarea>
             </div>

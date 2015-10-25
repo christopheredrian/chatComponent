@@ -1,6 +1,10 @@
 <?php
     class FileUtilities{
         
+        public static function fetchData() {
+            echo file_get_contents('room.json');
+        }
+        
         public static function pushPerson($name) {
             $file = "room.json";
             $roomContents = file_get_contents($file);

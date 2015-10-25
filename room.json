@@ -1,14 +1,5 @@
 {
     "room": 101,
-    "messages": [{
-        "sender": "",
-        "body": ""
-    }, {
-        "sender": "bart",
-        "body": "Hello wordl!"
-    }, {
-        "sender": "penelope",
-        "body": "Hello Aswell!!"
-    }],
-    "people": ["Bart", "Penelope"]
+    "messages": [],
+    "people": []
 }

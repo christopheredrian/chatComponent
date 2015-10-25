@@ -13,16 +13,16 @@
     <link rel="stylesheet" href="css/general.css" type="text/css" />
 </head>
 
-<body ng-app="main">
+<body ng-controller="MainController as mainCtrl">
+    {{mainCtrl.isLoggedIn}}
     <div class="navbar navbar-default navbar-static-top" ng-controller="NavigationController as navigationCtrl">
         <div class="container">
             <div class="navbar-header">
                 <a href="/" class="navbar-brand">The Forum</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" ng-click="navigationCtrl.logout()">Logout</a>
-
+                <li ng-show="mainCtrl.isLoggedIn">
+                    <a href="#" ng-click="mainCtrl.logOut()">Logout</a>
                 </li>
             </ul>
 
@@ -30,36 +30,73 @@
     </div>
     <div class="container" id="mainDiv">
 
-        <form name="loginForm" ng-submit="loginForm.$valid && loginCtrl.login()" ng-controller="LoginController as loginCtrl" method="post" novalidate>
+        <form ng-hide="mainCtrl.isLoggedIn" name="loginForm" ng-submit="loginForm.$valid && mainCtrl.login()" ng-controller="LoginController as loginCtrl" method="post" novalidate>
             {{loginForm.$valid}}
             <div class="form-group">
                 <label for="name">Name</label>
-                <input ng-model="loginCtrl.current.name" type="name" class="form-control" id="name" placeholder="Jade" required>
-                <!--</div>-->
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input ng-model="loginCtrl.current.password" type="password" class="form-control" id="password" placeholder="*******" required>
-                </div>
-                <div class="form-group">
-                    <label for="room">Room</label>
-                    <input ng-model="loginCtrl.current.room" type="text" class="form-control" id="room" placeholder="Room" required>
-                </div>
-                <div class="form-group">
-                    <label for="key">Key</label>
-                    <input ng-model="loginCtrl.current.key" type="password" class="form-control" id="key" placeholder="*******" required>
-                </div>
-                <input type="hidden" name="action" ng-value="loginCtrl.current.action" />
-                <button type="submit" class="btn btn-primary">Login</button>
+                <input ng-model="mainCtrl.current.name" type="name" class="form-control" id="name" placeholder="SuperMario" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input disabled ng-model="mainCtrl.current.password" type="password" class="form-control" id="password" placeholder="*******" required>
+            </div>
+            <div class="form-group">
+                <label for="room">Room</label>
+                <input disabled ng-model="mainCtrl.current.room" type="text" class="form-control" id="room" placeholder="Room" required>
+            </div>
+            <div class="form-group">
+                <label for="key">Key</label>
+                <input ng-model="mainCtrl.current.key" type="password" class="form-control" id="key" placeholder="*******" required>
+            </div>
+            <input type="hidden" name="action" ng-value="mainCtrl.current.action" />
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <div ng-controller="ChatController as chatCtrl" ng-show="mainCtrl.isLoggedIn">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Room {{mainCtrl.current.room }}</h1></div>
+                <div class="col-md-6">
+                    <h2 class="pull-right">Logged In as: {{mainCtrl.current.name}}</h2>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 ">
+                    <ul>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                        <li>Person1</li>
+                    </ul>
+                </div>
+                <div class="col-md-8 col-md-offset-1  -lg">
+                    <div class="row " style="border: 0px">
+                        <textarea readonly ng-model="mainCtrl.chatBox" rows="20" class="form-control" editable="false"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input ng-model="mainCtrl.textBox" class="form-control" type="text" name="textBox" />
+                        </div>
+                        <div class="col-md-2">
+                            <button ng-click="mainCtrl.sendMessage()" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
+    </div>
 
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 
 </body>
 
